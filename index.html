@@ -17,22 +17,112 @@
 
 <body>
 
-    <div class="container mainPage w-50">
+    <div class="container mainPage w-75">
         <div class="row">
 
             <div class="container menuList">
                 <div class="row logo w-50">
-                    <p>Список задач</p>
+                    <h1>Список задач</h1>
                 </div>
-                <div class="row menu">
-                    Меню
+
+                <div class="row menuStatus text-center m-4">
+                    <div class="col">
+                        <p><a href="#"
+                                class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Все</a>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p><a href="#"
+                                class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Не
+                                активные</a></p>
+                    </div>
+                    <div class="col">
+                        <p><a href="#"
+                                class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">В
+                                работе</a></p>
+                    </div>
+                    <div class="col">
+                        <p><a href="#"
+                                class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Завершенные</a>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <!-- Кнопка-триггер модального окна -->
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#createTask">Создать</button>
+                        <!-- Модальное окно -->
+                        <div class="modal fade" id="createTask" tabindex="-1" aria-labelledby="createTaskLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="createTaskLabel">Создание задачи</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Тело модального окна -->
+                                        <div class="mb-3">
+                                            <label for="createTitleTask" class="form-label">Заголовок</label>
+                                            <input type="text" class="form-control" id="createTitleTask">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="createDescriptionTask" class="form-label">Описание</label>
+                                            <textarea class="form-control" id="createDescriptionTask"
+                                                rows="3"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="createDateTask" class="form-label">Крайний срок</label>
+                                            <input type="datetime-local" class="form-control"
+                                                id="createDateTask"></input>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Закрыть</button>
+                                        <button type="button" class="btn btn-success createTaskBtn">Создать</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="container toDoList">
-                <div class="row list">
-                    Список дел
+                <!-- Tasks -->
+                <div class="row list m-2 border-top border-bottom border-success border-2 ">
+
+                    <div class="idTask pt-2 pb-2 col-1 border-end border-success-subtle text-center my-auto">
+                        1
+                    </div>
+
+                    <div class="titleTask pt-2 pb-2 col-5 border-end border-success-subtle align-middle my-auto">
+                        Заголовок
+                    </div>
+
+                    <div class="statusTask pt-2 pb-2 col-2 border-end border-success-subtle text-center my-auto">
+
+                        <select class="w-100 ">
+                            <option value="No active">Не активно</option>
+                            <option value="Process">В работе</option>
+                            <option value="Done">Завершено</option>
+                        </select>
+
+                    </div>
+
+                    <div class="dateDoneTask border-end border-success-subtle pt-2 pb-2 col-2 text-center my-auto">
+                        04.06.2023
+                    </div>
+
+                    <div class="dateDoneTask pt-2 pb-2 col-2 text-center my-auto">
+                        <button type="button" class="btn btn-light trash"><img src="img/trash.svg" alt=""></button>
+                        <button type="button" class="btn btn-light edit"><img src="img/edit.svg" alt=""></button>
+                    </div>
+
                 </div>
+                <!-- Tasks end -->
             </div>
 
         </div>
