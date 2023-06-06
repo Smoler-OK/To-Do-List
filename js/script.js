@@ -1,4 +1,7 @@
+'use strict';
+
 let createTaskBtn = document.querySelector('.createTaskBtn');
+let toDoList = document.querySelector('.toDoList');
 
 // Вывод задач
 (function outputTasks() {
@@ -6,9 +9,8 @@ let createTaskBtn = document.querySelector('.createTaskBtn');
     if (localStorage.length === 0) {
 
         // Вывод "Список пуст"
+        toDoList.innerHTML = 'Список дел пуст :('
     } else {
-
-        let toDoList = document.querySelector('.toDoList');
 
         for (let i = 0; i < localStorage.length; ++i) {
 
@@ -32,12 +34,12 @@ let createTaskBtn = document.querySelector('.createTaskBtn');
             toDoList.innerHTML += `<!-- Tasks -->
             <div class="row list m-2 border-top border-bottom border-success border-2 ">
 
-                <div class="idTask pt-2 pb-2 col-1 border-end border-success-subtle text-center my-auto">
+                <!-- <div class="idTask pt-2 pb-2 col-1 border-end border-success-subtle text-center my-auto">
                     ${getKey}
-                </div>
+                </div> -->
 
                 <button type="button" data-bs-toggle="modal" data-bs-target="#editTask-${i}" value="${i}"
-                    class="titleTask text-start text-decoration-none pt-2 pb-2 col-5 border-end border-success-subtle align-middle my-auto">
+                    class="titleTask btn rounded-0 text-start text-decoration-none pt-2 pb-2 col-5 border-end border-success-subtle align-middle my-auto">
                     ${parseJsonItem.title}
                 </button>
 
@@ -90,8 +92,8 @@ let createTaskBtn = document.querySelector('.createTaskBtn');
                     ${getDateDone}
                 </div>
 
-                <div class="dateDoneTask col-2 text-center my-auto ">
-                    <button type="button" class="btn btn-light trash" value=${getKey}>Удалить</button>
+                <div class="dateDoneTask col-3 text-center my-auto ">
+                    <button type="button" class="btn btn-light trash w-100" value=${getKey}>Удалить</button>
                 </div>
 
             </div>
@@ -117,19 +119,23 @@ class Task {
     addTask() {
 
         let arrKeys = [];
-        for(let i = 0; i < localStorage.length; i++) {
+        for(let i = 0; i <= localStorage.length; i++) {
 
-            arrKeys = localStorage.key(i);
+            // Добавляем ключи в массив
+            let getStorageKey = Number(localStorage.key(i));
+            arrKeys.push(getStorageKey);
         }
-        // Нашли наибольшее число для избежания повторений
-        // НЕ СОЗДАЕТСЯ БОЛЬШЕ 4х ЗАДАЧ
-        // let maxNumArr = Math.max(arrKeys) + 1;
-        // localStorage.setItem(maxNumArr, JSON.stringify({
-        //     title: this.title,
-        //     description: this.description,
-        //     dateDone: this.dateDone,
-        //     status: this.status,
-        // }));
+
+        // Нашли наибольшее число и взяли следующий индекс
+        // для избежания повторений
+        let maxNumArr = Math.max.apply(Math, arrKeys) + 1;
+
+        localStorage.setItem(maxNumArr, JSON.stringify({
+            title: this.title,
+            description: this.description,
+            dateDone: this.dateDone,
+            status: this.status,
+        }));
     }
 
     editTask(idTask) {
@@ -188,3 +194,6 @@ editTaskBtn.forEach((btn) => {
     });
 });
 
+
+
+// 
