@@ -23,9 +23,12 @@ body {
 .titleTask {
     white-space: nowrap; 
     overflow: hidden; 
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
+    color: #000;
+    background-color: #fff;
+    border: #fff;
 }
 
-.trash {
-    color: white;
+.titleTask:hover {
+    background-color: #e3e3e3;
 }
